@@ -18,6 +18,7 @@ public class DBConnect {
 
     // Конструктор, создающий соединение с базой данных, на вход принимает адрес базы
 
+
     public DBConnect(String address){
         String connectAddress = "jdbc:sqlite:" + address;
         try {
@@ -63,7 +64,7 @@ public class DBConnect {
         }
     }
 
-    public static String[][] read(String tableName){
+    public static String[][] read(String tableName) throws SQLException {
 
         String sql = "SELECT * FROM " + tableName; // запрос, который запрашивает всё из таблицы tableName
 //        int countColls; // количество столбцов
@@ -73,37 +74,31 @@ public class DBConnect {
 
 
 
-        try {
-
-            resultSet = statement.executeQuery(sql);
-            countColls = resultSet.getMetaData().getColumnCount();
-            columnNames = new String[countColls];
-            countRows = 0;
-            for (int i = 0; i < countColls; i++) {
-                columnNames[i] = resultSet.getMetaData().getColumnName(i+1);
-            }
-
-            while (resultSet.next()){
-                countRows ++;
-            }
-            resultSet.close();
-            resultSet = statement.executeQuery(sql);
-
-            data = new String[countRows][countColls];
-            int a = 0;
-            while (resultSet.next()){
-                for (int i = 0; i < countColls; i++) {
-                    data[a][i] = resultSet.getString(columnNames[i]);
-                }
-                a++;
-            }
-            resultSet.close();
-
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        resultSet = statement.executeQuery(sql);
+        countColls = resultSet.getMetaData().getColumnCount();
+        columnNames = new String[countColls];
+        countRows = 0;
+        for (int i = 0; i < countColls; i++) {
+            columnNames[i] = resultSet.getMetaData().getColumnName(i+1);
         }
+
+        while (resultSet.next()){
+            countRows ++;
+        }
+        resultSet.close();
+        resultSet = statement.executeQuery(sql);
+
+        data = new String[countRows][countColls];
+        int a = 0;
+        while (resultSet.next()){
+            for (int i = 0; i < countColls; i++) {
+                data[a][i] = resultSet.getString(columnNames[i]);
+            }
+            a++;
+        }
+        resultSet.close();
+
+
 
         return data;
     }
