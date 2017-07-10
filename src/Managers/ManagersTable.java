@@ -1,12 +1,13 @@
 package Managers;
 
 import javax.swing.*;
+import javax.swing.event.TableModelListener;
 import java.awt.*;
 
 /**
  * Created by ПКПК on 10.07.2017.
  */
-public class ManagersTable extends JFrame implements  {
+public class ManagersTable extends JFrame {
 
     Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 
