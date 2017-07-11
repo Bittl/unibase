@@ -22,6 +22,7 @@ public class EmploeersSettings {
 
 
     static{
+        columnnames.add("ID");
         columnnames.add("Фамилия");
         columnnames.add("Имя");
         columnnames.add("Отчество");

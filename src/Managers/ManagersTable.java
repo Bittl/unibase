@@ -37,6 +37,7 @@ public class ManagersTable extends JFrame {
         buttonAdd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                ManagersAdd managersAdd = new ManagersAdd(getThis());
 
             }
         });
@@ -46,6 +47,10 @@ public class ManagersTable extends JFrame {
 
 
         setVisible(true);
+    }
+
+    private JFrame getThis(){
+        return this;
     }
 
     public static void main(String[] args) {

@@ -75,4 +75,16 @@ public class ManagersTableModel extends AbstractTableModel {
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return false;
     }
+
+    public static void addToBase(String[] data){
+        String reqest = "insert into " + EmploeersSettings.TABLE_NAME + " (second_name, first_name, third_name, email, phone, password, privacy) values (";
+        for (int i = 0; i < data.length; i++) {
+            if (i != data.length - 1) reqest += "'" + data[i] + "', ";
+            else reqest += "'" + Integer.parseInt(data[i]) + "')";
+        }
+        reqest +=";";
+        System.out.println(reqest);
+
+        DBConnect.write(reqest);
+    }
 }
