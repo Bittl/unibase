@@ -72,12 +72,13 @@ public class ManagersAdd extends JDialog {
                 dataList.add(password.getText());
                 dataList.add(privacy.getText());
 
-                String[] data = new String[dataList.size()];
-                for (int i = 0; i < data.length; i++) {
-                    data[i] = dataList.get(i);
-                }
-                System.out.println(data);
-                ManagersTableModel.addToBase(data);
+//                String[] data = new String[dataList.size()];
+//                for (int i = 0; i < data.length; i++) {
+//                    data[i] = dataList.get(i);
+//                }
+//                System.out.println(data);
+//                ManagersTableModel.addToBase(data);
+                pushAdd();
             }
         });
 
@@ -99,5 +100,17 @@ public class ManagersAdd extends JDialog {
     private void pushCancel(){
         this.setVisible(false);
         dispose();
+    }
+
+    private void pushAdd(){
+
+        String[] data = new String[dataList.size()];
+        for (int i = 0; i < data.length; i++) {
+            data[i] = dataList.get(i);
+        }
+        System.out.println(data);
+        ManagersTableModel.addToBase(data);
+        this.setVisible(false);
+        this.dispose();
     }
 }

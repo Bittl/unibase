@@ -87,4 +87,18 @@ public class ManagersTableModel extends AbstractTableModel {
 
         DBConnect.write(reqest);
     }
+
+    public static int getId(int row){
+        try{
+            data = DBConnect.read(EmploeersSettings.TABLE_NAME);
+        } catch (SQLException e) {
+            System.out.println("No Base");
+        }
+        return Integer.parseInt(data[row][0].toString());
+    }
+
+    public static void deleteFromBase(int id){
+        String request = "delete from " + EmploeersSettings.TABLE_NAME + " where ID = "  + id ;
+        DBConnect.write(request);
+    }
 }
