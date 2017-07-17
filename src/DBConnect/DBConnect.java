@@ -134,7 +134,7 @@ public class DBConnect {
             resultSet = statement.executeQuery(sql);
             names = new String[resultSet.getMetaData().getColumnCount()];
             for (int i = 0; i < names.length; i++) {
-                names[i] = resultSet.getMetaData().getColumnLabel(i+1);
+                names[i] = resultSet.getMetaData().getColumnLabel(i + 1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -142,6 +142,22 @@ public class DBConnect {
 
 
         return names;
+    }
+
+    public static String[] getRow(int id, String tableName){
+        String sql = "select * from " + tableName + " where id=" +  id + ";";
+        String[] rowData = null;
+        try {
+            resultSet = statement.executeQuery(sql);
+            rowData = new String[resultSet.getMetaData().getColumnCount()];
+            for (int i = 0; i < rowData.length; i++) {
+                rowData[i] = resultSet.getString(i + 1);
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return rowData;
     }
 
 

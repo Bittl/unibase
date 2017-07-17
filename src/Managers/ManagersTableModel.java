@@ -76,6 +76,8 @@ public class ManagersTableModel extends AbstractTableModel {
         return false;
     }
 
+
+    // добавление в БД записи из массива data
     public static void addToBase(String[] data){
         String reqest = "insert into " + EmploeersSettings.TABLE_NAME + " (second_name, first_name, third_name, email, phone, password, privacy) values (";
         for (int i = 0; i < data.length; i++) {
@@ -88,6 +90,7 @@ public class ManagersTableModel extends AbstractTableModel {
         DBConnect.write(reqest);
     }
 
+    // находим ID для манипуляций со сторкой с этим ID
     public static int getId(int row){
         try{
             data = DBConnect.read(EmploeersSettings.TABLE_NAME);
@@ -97,8 +100,17 @@ public class ManagersTableModel extends AbstractTableModel {
         return Integer.parseInt(data[row][0].toString());
     }
 
+    // удаляем по ID
     public static void deleteFromBase(int id){
         String request = "delete from " + EmploeersSettings.TABLE_NAME + " where ID = "  + id ;
         DBConnect.write(request);
+    }
+
+    // вычленяем массив строчек по ID
+    public static String[] getFromBase (int id){
+
+        DBConnect.getRow(id, EmploeersSettings.TABLE_NAME);
+
+        return null;
     }
 }

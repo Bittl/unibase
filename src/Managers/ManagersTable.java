@@ -70,6 +70,19 @@ public class ManagersTable extends JFrame {
             }
         });
 
+        buttonChange.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String[] changeData = ManagersTableModel.getFromBase(ManagersTableModel.getId(table.getSelectedRow()));
+                System.out.println(changeData);
+                ManagersChange managersChange = new ManagersChange(getThis(), changeData );
+                table.setModel(getModel());
+                table.repaint();
+
+            }
+        });
+
 
 
 
