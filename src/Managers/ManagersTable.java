@@ -74,8 +74,17 @@ public class ManagersTable extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+//                int row = table.getSelectedRow();
+//                System.out.println(row);
+//                int id = ManagersTableModel.getId(row);
+//                System.out.println(id);
+
+
+
                 String[] changeData = ManagersTableModel.getFromBase(ManagersTableModel.getId(table.getSelectedRow()));
-                System.out.println(changeData);
+
+
+//                System.out.println(changeData);
                 ManagersChange managersChange = new ManagersChange(getThis(), changeData );
                 table.setModel(getModel());
                 table.repaint();

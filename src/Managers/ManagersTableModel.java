@@ -109,8 +109,22 @@ public class ManagersTableModel extends AbstractTableModel {
     // вычленяем массив строчек по ID
     public static String[] getFromBase (int id){
 
-        DBConnect.getRow(id, EmploeersSettings.TABLE_NAME);
+        String[] data =  DBConnect.getRow(id, EmploeersSettings.TABLE_NAME);
 
-        return null;
+        return data;
+    }
+    public static void changeInBase(String[] data, int id){
+
+        String reqest = "update " + EmploeersSettings.TABLE_NAME + " set ";
+        for (int i = 0; i < data.length; i++) {
+            if (i != data.length - 1) reqest += EmploeersSettings.tableNames[i] + " = '" + data[i] + "', ";
+            else reqest += EmploeersSettings.tableNames[i] + " = '" + Integer.parseInt(data[i]) + "'";
+        }
+        reqest +=" where ID = " + id;
+        System.out.println(reqest);
+
+        DBConnect.write(reqest);
+
+        //(second_name, first_name, third_name, email, phone, password, privacy) values (
     }
 }

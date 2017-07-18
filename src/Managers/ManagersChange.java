@@ -12,10 +12,12 @@ import java.util.ArrayList;
 public class ManagersChange extends JDialog {
 
     ArrayList<String> dataList = new ArrayList<>();
+    String[] oldData;
 
     public ManagersChange(JFrame owner, String[] oldData){
 
         super (owner, "Изменить данные сотрудника", true);
+        this.oldData = oldData;
 
         setSize(500, 500);
 
@@ -24,7 +26,7 @@ public class ManagersChange extends JDialog {
         add(dataPanel, BorderLayout.NORTH);
         add(buttonPanel, BorderLayout.SOUTH);
 
-        JButton buttonAdd = new JButton("Добавить сотрудника");
+        JButton buttonAdd = new JButton("Изменить сотрудника");
         JButton buttonDelete = new JButton("Удалить сотрудника");
         JButton buttonCancel = new JButton("Отмена");
 
@@ -94,7 +96,7 @@ public class ManagersChange extends JDialog {
         buttonDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ManagersTableModel.deleteFromBase(Integer.parseInt(oldData[0]));
             }
         });
 
@@ -125,7 +127,7 @@ public class ManagersChange extends JDialog {
             data[i] = dataList.get(i);
         }
         System.out.println(data);
-        ManagersTableModel.addToBase(data);
+        ManagersTableModel.changeInBase(data, Integer.parseInt(oldData[0]));
         this.setVisible(false);
         this.dispose();
     }

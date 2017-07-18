@@ -20,6 +20,9 @@ public class EmploeersSettings {
 
     public static Vector<String> columnnames = new Vector<>(); // нахрен здесь вектор - не пойму. ну пусть живёт пока
 
+    public static String[] tableNames = {"second_name", "first_name", "third_name", "email", "phone", "password", "privacy"};
+
+
 
     static{
         columnnames.add("ID");
