@@ -1,12 +1,14 @@
 package repares;
 
+import DBConnect.DBConnect;
+
 import javax.swing.table.AbstractTableModel;
 
 public class ReparesTableModel extends AbstractTableModel {
 
     static Object[][] data;
     static{
-
+        DBConnect.connect("UniBase.db");
     }
 
 
